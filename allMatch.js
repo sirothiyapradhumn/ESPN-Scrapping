@@ -5,7 +5,7 @@ const cheerio = require("cheerio");
 const {gifs} = require("./scorecard");
 
 function getAllMatch(url){
-    console.log("from allMatch.js ", url);
+    //console.log("from allMatch.js ", url);
     request(url, cb);
 }
 
@@ -25,13 +25,14 @@ function extractAllMatchLink(html){
     // attr() -> metthod forr getting all attributes and there values
     for(let i = 0; i<scorecardElemArr.length; i++){
         let scorecardLink = selecTool(scorecardElemArr[i]).attr("href");
-        console.log(i+") "+ scorecardLink); 
+        //console.log(i+") "+ scorecardLink); 
         // o/p -> www.espncricinfo.com/series/ipl-2020-21-1210595/delhi-capitals-vs-mumbai-indians-final-1237181/full-scorecard
 
         let fullLink = "https://www.espncricinfo.com" + scorecardLink;
 
         //getScorecardObj.gifs(fullLink);
         gifs(fullLink);
+        break;
     }
 }
 
