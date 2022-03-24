@@ -2,6 +2,7 @@ let url = "https://www.espncricinfo.com/series/ipl-2020-21-1210595";
 
 const request =  require("request");
 const cheerio = require("cheerio");
+const allMatchObj = require("./allMatch");
 
 request(url, cb);
 
@@ -20,9 +21,12 @@ function handleHTML(html){
 
     // attr() -> metthod forr getting all attributes and there values
     let relativeLink = anchorElem.attr("href");
-    //console.log(relativeLink);
+    //console.log(relativeLink);  -> /series/ipl-2020-21-1210595/match-results
     let fullLink = "https://www.espncricinfo.com" + relativeLink;
-    console.log(fullLink);
+    //console.log(fullLink);  ->https://www.espncricinfo.com/series/ipl-2020-21-1210595/match-results
+
+    allMatchObj.getAllMatch(fullLink);
+    
 }
 
 
