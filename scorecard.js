@@ -62,9 +62,21 @@ function getMatchDetails(html){
             //check to see if any of the matches elements have the given className
             let row = selecTool(allRows[i]);
             let firstColmnOfRow = row.find("td")[0];
+            //if(selecTool(selecTool(allRows[i]).find("td")[0]).hasClass("batsman-cell"))  same as below line
             if(selecTool(firstColmnOfRow).hasClass("batsman-cell")){
                 //will be getting valid data
                 // name | runs | balls | 4's | 6's | sr
+                //console.log("inside");
+                let playerName = selecTool(row.find("td")[0]).text();
+                let runs = selecTool(row.find("td")[2]).text();
+                let balls = selecTool(row.find("td")[3]).text();
+                let numberOf4 = selecTool(row.find("td")[5]).text();
+                let numberOf6 = selecTool(row.find("td")[6]).text();
+                let sr = selecTool(row.find("td")[7]).text();
+
+                console.log(
+                    `playerName -> ${playerName} | runsScored ->  ${runs} | ballsPlayed ->  ${balls} | numbOfFours -> ${numberOf4} | numbOfSixes -> ${numberOf6} | strikeRate-> ${sr}`
+                  );
             }
         }
     }
