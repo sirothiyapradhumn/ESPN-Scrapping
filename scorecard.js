@@ -1,7 +1,8 @@
 
 const request =  require("request");
 const cheerio = require("cheerio");
-const { safeStringify } = require("request/lib/helpers");
+const fs = require("fs");
+const path = require("path");
 
 function getInfoFromScorecard(url){
     //console.log("from scorecard.js ", url);
@@ -28,7 +29,7 @@ function getMatchDetails(html){
     //console.log(desc.text());
     //o/p -> result6th Match (N), Dubai (DSC), Sep 24 2020, Indian Premier League
     let descArr = desc.text().split(",");
-    console.log(descArr);
+    //console.log(descArr);
     let dateOfMatch = descArr[2];
     let venueOfMatch = descArr[1]
     console.log(dateOfMatch);
@@ -77,6 +78,11 @@ function getMatchDetails(html){
                 console.log(
                     `playerName -> ${playerName} | runsScored ->  ${runs} | ballsPlayed ->  ${balls} | numbOfFours -> ${numberOf4} | numbOfSixes -> ${numberOf6} | strikeRate-> ${sr}`
                   );
+
+                  let teamNamePath = path.join(__dirname, "IPL", team1);
+                  if(!fs.existsSync(teamNamePath)){
+                      fs.mkdirSync(teamNamePath);
+                  }
             }
         }
     }

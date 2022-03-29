@@ -32,7 +32,7 @@ function extractAllMatchLink(html){
 
         //getScorecardObj.gifs(fullLink);
         gifs(fullLink);
-        break;
+        //break;
     }
 }
 
