@@ -7,5 +7,5 @@ You need to scrap data using this link in the format displayed below.
 3. Create Excel file of each batsman in that team folder 
 in which we will store details of the player in the form of array of object where each object should describe a particular match played by a player. <br />
 Details of an object includes <br />
-	a. Runs, balls, sixes , fours, Strike rate(sr) for that match <br />
-	b. date ,venue ,result and opponent name for that match 
+	a. date ,venue ,result and opponent name for that match <br />
+	b. Runs, balls, sixes , fours, Strike rate(sr) for that match 
