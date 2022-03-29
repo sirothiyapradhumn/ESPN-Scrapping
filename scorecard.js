@@ -70,7 +70,7 @@ function getMatchDetails(html){
                 //will be getting valid data
                 // name | runs | balls | 4's | 6's | sr
                 //console.log("inside");
-                let playerName = selecTool(row.find("td")[0]).text();
+                let playerName = selecTool(row.find("td")[0]).text().trim();
                 let runs = selecTool(row.find("td")[2]).text();
                 let balls = selecTool(row.find("td")[3]).text();
                 let numberOf4 = selecTool(row.find("td")[5]).text();
@@ -81,12 +81,12 @@ function getMatchDetails(html){
                     `playerName -> ${playerName} | runsScored ->  ${runs} | ballsPlayed ->  ${balls} | numbOfFours -> ${numberOf4} | numbOfSixes -> ${numberOf6} | strikeRate-> ${sr}`
                   );
 
-                  processInformation(dateOfMatch,venueOfMatch,matchResult,team1,team2,playerName,runs,ball,numberOf4,numberOf6,sr)
+                  processInformation(dateOfMatch,venueOfMatch,matchResult,team1,team2,playerName,runs,balls,numberOf4,numberOf6,sr)
             }
         }
     }
 
-    function processInformation(dateOfMatch,venueOfMatch,matchResult,team1,team2,playerName,runs,ball,numberOf4,numberOf6,sr){
+    function processInformation(dateOfMatch,venueOfMatch,matchResult,team1,team2,playerName,runs,balls,numberOf4,numberOf6,sr){
         let teamNamePath = path.join(__dirname, "IPL", team1);
         if(!fs.existsSync(teamNamePath)){
             fs.mkdirSync(teamNamePath);
@@ -103,7 +103,7 @@ function getMatchDetails(html){
             team2,
             playerName,
             runs,
-            ball,
+            balls,
             numberOf4,
             numberOf6,
             sr
@@ -115,10 +115,14 @@ function getMatchDetails(html){
     }
 }
 
-function excelReader(playerPath, playerName) {
+function excelReader(playerPath, sheetName) {
     if(!fs.existsSync(playerPath)){
         return [];
     }
+    let workBook = xlsx.readFile(playerPath);
+    let excelData = workBook.Sheets[sheetName];
+    let  playerObj = xlsx.utils.sheet_to_json(excelData);
+    return playerObj;
 }
 
 function excelWriter(playerPath, jsObject, sheetName){
