@@ -45,11 +45,11 @@ function getMatchDetails(html){
     let teamName = selecTool(".name-detail>.name-link");
     //console.log(teamName.text());
 
-    let team1 = selecTool(teamName[0]).text();
-    let team2 = selecTool(teamName[1]).text();
+    let ownTeam = selecTool(teamName[0]).text();
+    let opponentTeam = selecTool(teamName[1]).text();
 
-    console.log(team1);
-    console.log(team2);
+    console.log(ownTeam);
+    console.log(opponentTeam);
 
     //5. inning
     let allBatmenTable = selecTool(".table.batsman tbody");
@@ -81,14 +81,14 @@ function getMatchDetails(html){
                     `playerName -> ${playerName} | runsScored ->  ${runs} | ballsPlayed ->  ${balls} | numbOfFours -> ${numberOf4} | numbOfSixes -> ${numberOf6} | strikeRate-> ${sr}`
                   );
 
-                  processInformation(dateOfMatch,venueOfMatch,matchResult,team1,team2,playerName,runs,balls,numberOf4,numberOf6,sr);
+                  processInformation(dateOfMatch,venueOfMatch,matchResult,ownTeam,opponentTeam,playerName,runs,balls,numberOf4,numberOf6,sr);
             }
         }
     }
 
-    function processInformation(dateOfMatch,venueOfMatch,matchResult,team1,team2,playerName,runs,balls,numberOf4,numberOf6,sr){
-                                    //F:\ESPN Scrapper\IPL\team1
-        let teamNamePath = path.join(__dirname, "IPL", team1);
+    function processInformation(dateOfMatch,venueOfMatch,matchResult,ownTeam,opponentTeam,playerName,runs,balls,numberOf4,numberOf6,sr){
+                                    //F:\ESPN Scrapper\IPL\ownTeam
+        let teamNamePath = path.join(__dirname, "IPL", ownTeam);
         if(!fs.existsSync(teamNamePath)){
             fs.mkdirSync(teamNamePath);
         }
@@ -100,8 +100,8 @@ function getMatchDetails(html){
             dateOfMatch,
             venueOfMatch,
             matchResult,
-            team1,
-            team2,
+            ownTeam,
+            opponentTeam,
             playerName,
             runs,
             balls,
