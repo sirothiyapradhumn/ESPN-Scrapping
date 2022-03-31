@@ -111,6 +111,7 @@ function getMatchDetails(html){
         };
 
         content.push(playerObj);
+        // this function writes all the content into excel sheet, and puts that excel sheet data into playerPath-> rohitSharma.xlsx
         excelWriter(playerPath, content, playerName);
 
     }
